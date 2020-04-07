@@ -15,8 +15,8 @@ int main()
 	{
 		cout << " ________________________________________" << endl;
 		cout << "|=---------------=MENU=-----------------=|" << endl;
-		cout << "| 1 - Добавить событие                   |" << endl;
-		cout << "| 2 - Вывести все события                |" << endl;
+		cout << "| 1 - Add                                |" << endl;
+		cout << "| 2 - Show                               |" << endl;
 		cout << "|________________________________________|" << endl;
 		cout << ">>>"; cin >> menu;
 		switch (menu)
@@ -26,33 +26,39 @@ int main()
 			{
 				cout << " ________________________________________" << endl;
 				cout << "|=---------------=MENU=-----------------=|" << endl;
-				cout << "| 1 - Встреча                            |" << endl;
-				cout << "| 2 - День Рождения                      |" << endl;
-				cout << "| 3 - Событие                            |" << endl;
+				cout << "| 1 - Meeting                            |" << endl;
+				cout << "| 2 - Bday                               |" << endl;
+				cout << "| 3 - Custom                             |" << endl;
 				cout << "|________________________________________|" << endl;
 				cout << ">>>"; cin >> menu2;
 				switch (menu2)
 				{
 				case 1:
-					cout << "Введите дату: "; cin >> d;
-					cout << "Введите время: "; cin >> t;
-					cout << "Введите место: "; cin.get();
+					cout << "Date: "; cin >> d;
+					cout << "Time: "; cin >> t;
+					cout << "Place: "; cin.get();
 					getline(cin, str);  
-					cout << "Введите с кем встреча: "; getline(cin, str2);
-					myEvents.add(new Meeting(d, t, str, str2)); break;
+					cout << "Person: "; getline(cin, str2);
+					myEvents.add(new Meeting(d, t, str, str2));
+					cout << "Successful!\n";
+					break;
 				case 2:
-					cout << "Введите дату: "; cin >> d;
-					cout << "Введите время: "; cin >> t;
-					cout << "Введите имениника: "; cin.get();
+					cout << "Date: "; cin >> d;
+					cout << "Time: "; cin >> t;
+					cout << "Place: "; cin.get();
 					getline(cin, str);
-					cout << "Введите место: "; getline(cin, str2);
-					cout << "Введите возраст: "; cin >> age;
-					myEvents.add(new Bday(d, t, str, str2,age)); break;
+					cout << "Hero: "; getline(cin, str2);
+					cout << "Age: "; cin >> age;
+					myEvents.add(new Bday(d, t, str, str2,age));
+					cout << "Successful!\n"; 
+					break;
 				case 3:
-					cout << "Введите дату: "; cin >> d;
-					cout << "Введите время: "; cin >> t;
-					cout << "Введите описание: "; getline(cin, str); cin >> str;
-					myEvents.add(new Custom(d, t, str)); break;
+					cout << "Date: "; cin >> d;
+					cout << "Time: "; cin >> t;
+					cout << "Description: "; getline(cin, str); cin >> str;
+					myEvents.add(new Custom(d, t, str));
+					cout << "Successful!\n"; 
+					break;
 				}
 			} while (menu2 != 0); break;
 		case 2:

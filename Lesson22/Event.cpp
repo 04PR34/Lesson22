@@ -76,6 +76,8 @@ namespace myEvent
 		else if (this->date == obj.date &&this->time <= obj.time) return true;
 		else return false;
 	}
+
+
 	bool cmp(const Event * obj, const Event * obj2)
 	{
 		return *obj < *obj2;

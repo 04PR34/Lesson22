@@ -1,5 +1,5 @@
 #pragma once
-#include <list>
+#include <vector>
 #include "Custom.h"
 #include "Bday.h"
 #include "Meeting.h"
@@ -9,7 +9,7 @@ namespace myEvent
 	class Events
 	{
 	private:
-		list<Event*>events;
+		vector<Event*>events;
 	public:
 		Events();
 		~Events();

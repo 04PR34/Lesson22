@@ -11,7 +11,7 @@ Time_::Time_()
 	this->hour = tim->tm_hour;
 	this->minutes = tim->tm_min;
 	this->seconds = tim->tm_sec;
-	this->format = new char[strlen("utc")];
+	this->format = new char[strlen("utc")+1];
 	strcpy(this->format, "utc");
 
 	this->utc = true;
@@ -19,31 +19,17 @@ Time_::Time_()
 
 Time_::Time_(int hour, int minutes, int seconds, const char * format)
 {
-	if((minutes > 60 || minutes < 1 || seconds > 60 || seconds < 1) || 
-		((strcmp(format, "am") == 0 || strcmp(format, "pm") == 0) && (hour > 12 || hour < 1)) ||
-		(strcmp(format, "utc") == 0 && (hour > 24 || hour < 1)) ||
-		(strcmp(format, "utc") != 0 || strcmp(format, "pm") != 0 || strcmp(format, "am") != 0))
-	{
-		cout<<"Некорректно заданы параметры! Установлено время по умолчанию (utc, 12:00)!"<<endl;
-		system("pause");
-		this->format = new char[strlen("utc")];
-		strcpy(this->format, "utc");
-		this->hour = 12;
-		this->minutes = 0;
-		this->seconds = 0;
-	}
-	else
-	{
+	 
 		this->hour = hour;
 		this->minutes = minutes;
 		this->seconds = seconds;
 
-		this->format = new char[strlen(format)];
+		this->format = new char[strlen(format)+1];
 		strcpy(this->format, format);
 
 		if (strcmp(this->format, "utc") == 0)this->utc = true;
 		else this->utc = false;
-	}
+	 
 	
 }
 
@@ -53,9 +39,7 @@ Time_::Time_(const Time_ & obj)
 	this->minutes = obj.minutes;
 	this->seconds = obj.seconds;
 	
-	if (this->format != NULL)delete[]this->format;
-
-	this->format = new char[strlen(obj.format)];
+	this->format = new char[strlen(obj.format)+1];
 	strcpy(this->format, obj.format);
 
 	if (strcmp(this->format, "utc") == 0) this->utc = true;
@@ -65,7 +49,7 @@ Time_::Time_(const Time_ & obj)
 
 Time_::~Time_()
 {
-	//delete[] this->format; выдает ошибку с квадратными скобками и без!
+	 delete[] this->format; 
 }
 
 void Time_::setHour(int hour)
@@ -106,12 +90,7 @@ int Time_::getSeconds()
 
 void Time_::setFormat(const char * format)
 {
-	if (strcmp(this->format, format) == 0)return;
-	if ((strcmp(this->format, "am") == 0 && strcmp(format, "pm") == 0) || (strcmp(this->format, "pm") == 0 && strcmp(format, "am") == 0))
-	{
-		cout << "Перевод из am в pm и наоборот - невозможен!" << endl;
-		return;
-	}
+	 
 
 	if (strcmp(format, "am") == 0)
 	{
@@ -122,7 +101,7 @@ void Time_::setFormat(const char * format)
 		else
 		{
 			//delete[] this->format;
-			this->format = new char[strlen("am")];
+			this->format = new char[strlen("am")+1];
 			strcpy(this->format, "am");
 		}
 	}
@@ -130,14 +109,14 @@ void Time_::setFormat(const char * format)
 	{
 		if (this->hour <= 12)
 		{
-			cout << "Перевод невозможен!" << endl;
+			cout << "Error!" << endl;
 		}
 		else
 		{
 			this->hour -= 12;
 
 			//delete[] this->format;  error
-			this->format = new char[strlen("pm")];
+			this->format = new char[strlen("pm")+1];
 			strcpy(this->format, "pm");
 		}
 	}
@@ -146,13 +125,13 @@ void Time_::setFormat(const char * format)
 		if (strcmp(this->format, "am") == 0)
 		{
 			//delete[] this->format;
-			this->format = new char[strlen("utc")];
+			this->format = new char[strlen("utc")+1];
 			strcpy(this->format, "utc");
 		}
 		else if (strcmp(this->format, "pm") == 0)
 		{
 			//delete[] this->format;
-			this->format = new char[strlen("utc")];
+			this->format = new char[strlen("utc")+1];
 			strcpy(this->format, "utc");
 
 			this->hour += 12;
@@ -180,7 +159,7 @@ void Time_::reGetLocalTime()
 	this->hour = tim->tm_hour;
 	this->minutes = tim->tm_min;
 	this->seconds = tim->tm_sec;
-	this->format = new char[strlen("utc")];
+	this->format = new char[strlen("utc")+1];
 	strcpy(this->format, "utc");
 
 	this->setFormat(form);
@@ -197,7 +176,7 @@ void Time_::reGetLocalTimeInUtc()
 	this->hour = tim->tm_hour;
 	this->minutes = tim->tm_min;
 	this->seconds = tim->tm_sec;
-	this->format = new char[strlen("utc")];
+	this->format = new char[strlen("utc")+1];
 	strcpy(this->format, "utc");
 
 	this->utc = true;
@@ -254,13 +233,13 @@ void Time_::tickTime()
 		if (strcmp(this->format, "am") == 0)
 		{
 			delete[] this->format;
-			this->format = new char[strlen("pm")];
+			this->format = new char[strlen("pm")+1];
 			strcpy(this->format, "pm");
 		}
 		else if (strcmp(this->format, "pm") == 0)
 		{
 			delete[] this->format;
-			this->format = new char[strlen("am")];
+			this->format = new char[strlen("am")+1];
 			strcpy(this->format, "am");
 		}
 	}
@@ -293,13 +272,13 @@ void Time_::tickBack()
 		if (strcmp(this->format, "am") == 0)
 		{
 			delete[] this->format;
-			this->format = new char[strlen("pm")];
+			this->format = new char[strlen("pm")+1];
 			strcpy(this->format, "pm");
 		}
 		else if (strcmp(this->format, "pm") == 0)
 		{
 			delete[] this->format;
-			this->format = new char[strlen("am")];
+			this->format = new char[strlen("am")+1];
 			strcpy(this->format, "am");
 		}
 	}
@@ -377,7 +356,7 @@ bool Time_::operator<=(const Time_ & obj)const&
 Time_ & Time_::operator=(const Time_ & obj)
 {
 	// TODO: вставьте здесь оператор return
-	this->format = new char[strlen(obj.format)];
+	this->format = new char[strlen(obj.format)+1];
 	strcpy(this->format, obj.format);
 
 	this->hour = obj.hour;
@@ -458,27 +437,20 @@ Time_ Time_::operator--(int a)
 ostream & operator<<(ostream & out, Time_ & t)
 {
 	// TODO: вставьте здесь оператор return
-	out << t.format << "  time: " << t.hour << ":" << t.minutes << ":" <<t.seconds;
+	out   << t.hour << ":" << t.minutes << ":" <<t.seconds << " " << t.format;
 	return out;
 }
 
 istream & operator>>(istream & in, Time_ & t)
 {
-	// TODO: вставьте здесь оператор return
-	cout << "  Введите формат времени: "; char tmp[10]; in.get(); in.getline(tmp, 10);
-	//if (t.format != NULL)delete[]t.format;
-	t.format = new char[strlen(tmp)];
-	strcpy(t.format, tmp);
+	 
+	t.format = new char[strlen("utc")+1];
+	strcpy(t.format, "utc");
 
-	cout << "  Введите часы: "; in >> t.hour;
-	cout << "  Введите минуты: "; in >> t.minutes;
-	cout << "  Введите секунды: "; in >> t.seconds;
-
-	if (!t.valid())
-	{
-		cout << "Параметры введены не верно! \nУстановлено текущее время!" << endl;
-		t.reGetLocalTimeInUtc();
-	}
+	cout << "hh:mm:ss"; in >> t.hour;
+	  in >> t.minutes;
+	 in >> t.seconds;
+ 
 
 	return in;
 }

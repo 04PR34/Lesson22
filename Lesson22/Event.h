@@ -38,6 +38,6 @@ namespace myEvent
 
 	};
 
-	bool cmp(const Event * obj,const Event * obj2);
+	bool cmp(const Event* obj,const Event* obj2);
 }
 

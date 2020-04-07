@@ -14,7 +14,8 @@ namespace myEvent
 
 	void Events::Show()
 	{
-		for (list<Event*>::iterator i = events.begin(); i != events.end(); i++)
+		sort(events.begin(), events.end(), cmp);
+		for (vector<Event*>::iterator i = events.begin(); i != events.end(); i++)
 		{
 			(*i)->Show();
 			cout << "----------------------|" << endl;
@@ -23,8 +24,7 @@ namespace myEvent
 
 	void Events::add(Event * obj)
 	{
-		events.push_back(obj);
-		//sort(events.begin(), events.end(),cmp);
+		events.push_back(obj);		
 	}
 }
 
