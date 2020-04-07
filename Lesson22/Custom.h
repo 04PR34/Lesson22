@@ -1,20 +1,22 @@
 #pragma once
 #include "Event.h"
-class Custom : public Event
+namespace myEvent
 {
-protected:
-	string description;
+	class Custom : public Event
+	{
+	protected:
+		string description;
 
-public:
-	Custom();
-	Custom(Date date, Time_ time, string description);
-	~Custom();
+	public:
+		Custom();
+		Custom(Date date, Time_ time, string description);
+		~Custom();
 
-	void setDescription(string description);
-	string getDescription()const&;
+		void setDescription(string description);
+		string getDescription()const&;
 
-	virtual void Show();
-	virtual string toString();
-	virtual string Type();
-};
-
+		virtual void Show();
+		virtual string toString();
+		virtual string Type();
+	};
+}

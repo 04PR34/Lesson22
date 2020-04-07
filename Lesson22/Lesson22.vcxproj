@@ -145,11 +145,14 @@
   <ItemGroup>
     <ClInclude Include="Date.h" />
     <ClInclude Include="Event.h" />
+    <ClInclude Include="Events.h" />
     <ClInclude Include="Time_.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="Event.cpp" />
+    <ClCompile Include="Events.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Time_.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

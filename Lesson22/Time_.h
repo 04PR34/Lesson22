@@ -1,3 +1,4 @@
+#define   _CRT_SECURE_NO_WARNINGS 
 #pragma once
 
 #include <iostream>
@@ -38,12 +39,12 @@ public:
 	void showTime(); //show time by the format
 
 	//--------- Comparison operators ---------
-	bool operator == (const Time_& obj);
-	bool operator != (const Time_& obj);
-	bool operator > (const Time_& obj);
-	bool operator < (const Time_& obj);
-	bool operator >= (const Time_& obj);
-	bool operator <= (const Time_& obj);
+	bool operator == (const Time_& obj)const&;
+	bool operator != (const Time_& obj)const&;
+	bool operator > (const Time_& obj)const&;
+	bool operator < (const Time_& obj)const&;
+	bool operator >= (const Time_& obj)const&;
+	bool operator <= (const Time_& obj)const&;
 
 	//--------- Assignment operators ---------
 	Time_& operator = (const Time_& obj);

@@ -200,7 +200,7 @@ void Date::showDate()
 		<< day / 10 << day % 10 << endl;
 }
 
-bool Date::operator==(const Date & obj)
+bool Date::operator==(const Date & obj)const&
 {
 	if (this->day == obj.day 
 		&& this->month == obj.month 
@@ -210,7 +210,7 @@ bool Date::operator==(const Date & obj)
 		return false;
 }
 
-bool Date::operator!=(const Date & obj)
+bool Date::operator!=(const Date & obj)const&
 {
 	/*if (this->day != obj.day
 		|| this->month != obj.month
@@ -221,7 +221,7 @@ bool Date::operator!=(const Date & obj)
 	return !(*this == obj);
 }
 
-bool Date::operator>(const Date & obj)
+bool Date::operator>(const Date & obj)const&
 {
 	if (this->year > obj.year)
 		return true;
@@ -238,17 +238,17 @@ bool Date::operator>(const Date & obj)
 	return false;
 }
 
-bool Date::operator<(const Date & obj)
+bool Date::operator<(const Date & obj)const&
 {
 	return !( *this > obj) && *this != obj;
 }
 
-bool Date::operator>=(const Date & obj)
+bool Date::operator>=(const Date & obj)const&
 {
 	return *this > obj || *this == obj;
 }
 
-bool Date::operator<=(const Date & obj)
+bool Date::operator<=(const Date & obj)const&
 {
 	return *this < obj || *this == obj;
 }
@@ -306,4 +306,12 @@ ostream&  operator << (ostream& out, Date& obj){
 		<< obj.month / 10 << obj.month % 10 << "-"
 		<< obj.year;
 	return out;
+}
+
+istream & operator>>(istream & in, Date & obj)
+{
+	// TODO: insert return statement here
+	cout << "dd-mm-yyyy:";
+	in >> obj.day >> obj.month >> obj.year;
+	return in;
 }

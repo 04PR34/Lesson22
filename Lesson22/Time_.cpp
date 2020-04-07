@@ -310,7 +310,7 @@ void Time_::showTime()
 	cout << " " << this->format << " " << this->hour << ":" << this->minutes << ":" << this->seconds << endl;
 }
 
-bool Time_::operator==(const Time_ & obj)
+bool Time_::operator==(const Time_ & obj)const&
 {
 	char form[10];
 	strcpy(form, this->format);
@@ -324,12 +324,12 @@ bool Time_::operator==(const Time_ & obj)
 	else return false;
 }
 
-bool Time_::operator!=(const Time_ & obj)
+bool Time_::operator!=(const Time_ & obj)const&
 {
 	return !(*this == obj);
 }
 
-bool Time_::operator>(const Time_ & obj)
+bool Time_::operator>(const Time_ & obj)const&
 {
 	char form[10];
 	strcpy(form, this->format);
@@ -356,19 +356,19 @@ bool Time_::operator>(const Time_ & obj)
 
 }
 
-bool Time_::operator<(const Time_ & obj)
+bool Time_::operator<(const Time_ & obj)const&
 {
 	if (!(*this > obj) && *this != obj)return true;
 	else return false;
 }
 
-bool Time_::operator>=(const Time_ & obj)
+bool Time_::operator>=(const Time_ & obj)const&
 {
 	if ((*this > obj) || (*this == obj))return true;
 	else return false;
 }
 
-bool Time_::operator<=(const Time_ & obj)
+bool Time_::operator<=(const Time_ & obj)const&
 {
 	if ((*this < obj) || (*this == obj))return true;
 	else return false;

@@ -34,12 +34,12 @@ public:
 	void showDate();
 
 				  //--------- ÎÏÅÐÀÒÎÐÛ ÑÐÀÂÍÅÍÈß ---------
-	bool operator == (const Date&  obj);
-	bool operator != (const Date& obj);
-	bool operator > (const Date& obj);
-	bool operator < (const Date& obj);
-	bool operator >= (const Date& obj);
-	bool operator <= (const Date& obj);
+	bool operator == (const Date&  obj)const&;
+	bool operator != (const Date& obj)const&;
+	bool operator > (const Date& obj)const&;
+	bool operator < (const Date& obj)const&;
+	bool operator >= (const Date& obj)const&;
+	bool operator <= (const Date& obj)const&;
 
 	//--------- ÎÏÅÐÀÒÎÐÛ ÏÐÈÑÂÎÅÍÈß ---------
 	Date& operator = (const Date& obj);
@@ -51,5 +51,6 @@ public:
 	Date operator - (int n);
 
 	friend ostream& operator << (ostream& out, Date& obj);
+	friend istream& operator >> (istream& in, Date& obj);
 };
 
